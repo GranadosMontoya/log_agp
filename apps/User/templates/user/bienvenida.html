@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="{% static 'css/bienvenida.css' %}">
+{% endblock head %}
+
+{% block body %}
+    <div class="bienvenida-container">
+        <h1>¡Bienvenido, {{ request.user.username }}!</h1>
+        <p>Has iniciado sesión correctamente.</p>
+
+        <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
+    </div>
+{% endblock body %}
