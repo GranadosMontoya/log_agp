@@ -11,19 +11,23 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('bienvenida')  # Cambia esto a la ruta que quieres luego de login
+            return redirect('user:home')  # Cambia esto a la ruta que quieres luego de login
         else:
             return render(request, 'user/login.html', {'mensaje': 'Credenciales inválidas'})
+    elif request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('user:home')  # Redirige si ya está autenticado
+        return render(request, 'user/login.html')
 
     return render(request, 'user/login.html')
 
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('user:login')
 
 
 
-@login_required(login_url='login')
+@login_required(login_url='user:login')
 def bienvenida_view(request):
     return render(request, 'user/bienvenida.html')

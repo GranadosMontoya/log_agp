@@ -140,4 +140,4 @@ MEDIA_URL = '/media/'  # URL para acceder a archivos multimedia
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Carpeta donde se guardan los archivos
 
 LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = '/login/' 
