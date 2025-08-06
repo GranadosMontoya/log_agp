@@ -17,28 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 
-# Swagger imports
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
-
-# Swagger config
-schema_view = get_schema_view(
-    openapi.Info(
-        title="API del Proyecto",
-        default_version='v1',
-        description="Documentación de la API del backend",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="tu@email.com"),
-        license=openapi.License(name="MIT"),
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    # Mis apps
-    re_path('', include('apps.User.urls')),
+    path('', include('apps.User.urls')),       # Se mantiene en raíz
+    path('pc/', include('apps.PC.urls')),      # Añade prefijo para esta app
 ]
