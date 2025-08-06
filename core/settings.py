@@ -44,6 +44,8 @@ MIS_APPS = [
     'drf_yasg',
     'apps.User',
     'apps.PC',
+    'apps.Empresas',
+
 ]
 
 INSTALLED_APPS = LOCAL_APPS + MIS_APPS

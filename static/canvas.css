@@ -10,3 +10,11 @@
 .custom-nav-link:hover {
     transform: scale(1.1); /* Se agranda un poco al hacer hover */
 }
+
+.btn-menu i:hover {
+    color: #ccc; /* o cualquier tono que prefieras para el hover */
+}
+
+.btn-menu i {
+    color: white;
+}

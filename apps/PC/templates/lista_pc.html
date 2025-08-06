@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Bienvenido</title>
-    <style>
-        body {
-            background-color: #f0f8ff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 100px;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        p {
-            color: #555;
-        }
-    </style>
-</head>
-<body>
-    <h1>¡Bienvenido al Proyecto!</h1>
-    <p>Esta es una página de prueba.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Lista de equipos</title>
+    <link rel="stylesheet" href="{% static 'css/lista_equipos.css' %}">
+    {% include 'includes/canvas.html' %}
+{% endblock head %}
+
+{% block body %}
+    <h2>Listado de Equipos</h2>
+    <ul>
+        {% for equipo in equipos %}
+            <li>
+                <strong>{{ equipo.nombre }}</strong> ({{ equipo.serial }}) - {{ equipo.marca }} {{ equipo.modelo }}
+            </li>
+        {% empty %}
+            <li>No hay equipos registrados aún.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

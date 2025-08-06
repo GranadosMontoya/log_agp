@@ -1,10 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from apps.PC.models import Equipo  # Ajusta si tu modelo está en otra app
 
-class PCView(LoginRequiredMixin, TemplateView):
+class PCView(LoginRequiredMixin, ListView):
+    model = Equipo
     template_name = 'lista_pc.html'
-    login_url = 'user:login'  # Redirección si no está logueado
+    context_object_name = 'equipos'  # Nombre con el que accedes a los objetos en la plantilla
+    login_url = 'user:login'
 
-    def get(self, request, *args, **kwargs):
-        print("Sebas")  # Para confirmar que entra a la vista
-        return super().get(request, *args, **kwargs)
+    def get_queryset(self):
+        return Equipo.objects.all().order_by('-fecha_registro')  # Por ejemplo, del más reciente al más antiguo
+

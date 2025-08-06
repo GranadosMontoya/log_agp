@@ -19,6 +19,7 @@ from django.urls import path, re_path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
     path('', include('apps.User.urls')),       # Se mantiene en raíz
     path('pc/', include('apps.PC.urls')),      # Añade prefijo para esta app
 ]
