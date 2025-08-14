@@ -144,3 +144,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Carpeta donde se guardan los arc
 
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = '/login/' 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

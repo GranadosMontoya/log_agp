@@ -16,6 +16,7 @@ class Equipo(models.Model):
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
     fecha_registro = models.DateTimeField(auto_now_add=True)
+    foto_del_pc = models.ImageField(upload_to='fotos_pc/', null=True, blank=True)
     empresa = models.ForeignKey('Empresas.Empresa', on_delete=models.CASCADE, null=True, blank=True)
 
 
@@ -35,7 +36,7 @@ class HistorialEquipo(models.Model):
     contraseña_asignado = models.CharField(max_length=100)
     ubicacion = models.CharField(max_length=100)
     observaciones = models.TextField(blank=True, null=True)
-
+    foto_historial = models.ImageField(upload_to='fotos_historial/', null=True, blank=True)  # Campo opcional de imagen
     class Meta:
         ordering = ['-fecha']  # Más recientes primero
 
