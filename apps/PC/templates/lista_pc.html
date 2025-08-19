@@ -10,11 +10,14 @@
 
 {% block body %}
 <div class="container mt-4">
-    <h2 class="mb-4 text-center">Listado de Equipos</h2>
+    <h2 class="mb-4 text-center titulo-lista-equipos">
+        Listado de Equipos
+    </h2>
     <div class="row g-4">
         {% for equipo in equipos %}
             <div class="col-md-4">
-                <div class="card shadow-sm h-100">
+                <!-- le agregamos tarjetas además de card -->
+                <div class="card tarjetas shadow-sm h-100">
                     
                     {% if equipo.foto_del_pc %}
                         <img src="{{ equipo.foto_del_pc.url }}" class="card-img-top img-standar" alt="{{ equipo.nombre }}">
@@ -64,5 +67,6 @@
             </div>
         {% endfor %}
     </div>
+
 </div>
 {% endblock %}
