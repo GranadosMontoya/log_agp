@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('', include('apps.User.urls')),       # Se mantiene en raíz
-    path('pc/', include('apps.PC.urls')),      # Añade prefijo para esta app
+    path('', include('apps.PC.urls')),      # Añade prefijo para esta app
 ]
 
 if settings.DEBUG:

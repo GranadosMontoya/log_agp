@@ -26,31 +26,14 @@
                     {% endif %}
 
                     <div class="card-body">
-                        <h5 class="card-title">{{ equipo.nombre }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ equipo.get_tipo_display }}</h6>
+                        <h5 class="card-title titulo-blanco">{{ equipo.nombre }}</h5>
+                        <h6 class="card-subtitle mb-2 titulo-blanco">{{ equipo.get_tipo_display }}</h6>
                         <p class="card-text">
                             <strong>Serial:</strong> {{ equipo.serial }}<br>
                             <strong>Marca:</strong> {{ equipo.marca }}<br>
                             <strong>Modelo:</strong> {{ equipo.modelo }}<br>
                             <strong>Empresa:</strong> {{ equipo.empresa.nombre|default:"No asignada" }}
                         </p>
-
-                        {% with ultimo=equipo.historial.first %}
-                            {% if ultimo %}
-                                <hr>
-                                {% if ultimo.foto_historial %}
-                                    <img src="{{ ultimo.foto_historial.url }}" class="img-fluid rounded mb-2" alt="Foto historial">
-                                {% endif %}
-                                <p class="small mb-1"><strong>Procesador:</strong> {{ ultimo.procesador }}</p>
-                                <p class="small mb-1"><strong>RAM:</strong> {{ ultimo.ram_gb }} GB</p>
-                                <p class="small mb-1"><strong>Almacenamiento:</strong> {{ ultimo.almacenamiento_gb }} GB</p>
-                                <p class="small mb-1"><strong>SO:</strong> {{ ultimo.sistema_operativo }}</p>
-                                <p class="small mb-1"><strong>Usuario:</strong> {{ ultimo.usuario_asignado }}</p>
-                                <p class="small mb-0"><strong>Ubicación:</strong> {{ ultimo.ubicacion }}</p>
-                            {% else %}
-                                <p class="text-muted small">Sin historial técnico registrado</p>
-                            {% endif %}
-                        {% endwith %}
                     </div>
 
                     <div class="card-footer text-end">

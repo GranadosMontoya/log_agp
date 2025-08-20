@@ -26,7 +26,7 @@ body {
     max-width: 250px;
     height: 180px;
     object-fit: cover;
-    margin: 0 auto;
+    margin: 16px auto 0 auto; /* margen superior de 16px */
     display: block;
 }
 
@@ -43,7 +43,12 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
+
 .tarjetas:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease;
+}
+
+.titulo-blanco {
+    color: #fff !important;
 }
