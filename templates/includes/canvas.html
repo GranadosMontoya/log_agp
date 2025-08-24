@@ -21,7 +21,7 @@
 
     <!-- Menú de usuario (derecha) -->
     <div>
-        <a href="{% url 'user:logout' %}" class="btn btn-danger">Cerrar sesión</a>
+        <a href="{% url 'user:logout' %}" class="btn btn-outline-danger">Cerrar sesión</a>
     </div>
 </div>
 
@@ -42,7 +42,7 @@
                 <a href="{% url 'user:home' %}" class="custom-nav-link">
                     <i class="bi bi-house"></i> Página principal
                 </a>
-                <a href="{% url 'pc:pc_view' %}" class="custom-nav-link">
+                <a href="{% url 'pc:pc_list' %}" class="custom-nav-link">
                     <i class="bi bi-laptop"></i> Equipos de computo
                 </a>
                 <a href="{% url 'user:home' %}" class="custom-nav-link">

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Detalle del equipo</title>
+<link rel="stylesheet" href="{% static 'css/detalle_pc.css' %}">
+{% include 'includes/canvas.html' %}
+{% endblock head %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="my_card mb-4 shadow-sm">
+        <div class="row g-0 align-items-center">
+            <!-- Columna de la imagen -->
+            <div class="col-md-4 text-center p-3">
+                {% if equipo.foto_del_pc %}
+                    <img src="{{ equipo.foto_del_pc.url }}" class="img-fluid rounded img-standar" alt="{{ equipo.nombre }}">
+                {% else %}
+                    <img src="{% static 'img/default_pc.jpg' %}" class="img-fluid rounded img-standar" alt="Sin imagen">
+                {% endif %}
+            </div>
+
+            <!-- Columna de los botones -->
+            <div class="col-md-2 text-center d-flex flex-column justify-content-center">
+                <div class="btn-group-vertical w-100" role="group" aria-label="Botones de acciones">
+                    <a type="button" href="#" class="btn btn-primary mb-2">Agregar al historial</a>
+                    <a type="button" href="#" class="btn btn-danger">Eliminar equipo</a>
+                </div>
+            </div>
+
+            <!-- Columna del detalle -->
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title titulo-blanco">{{ equipo.nombre }}</h5>
+                    <h6 class="card-subtitle mb-2 titulo-blanco">{{ equipo.get_tipo_display }}</h6>
+                    <p class="card-text">
+                        <strong>Serial:</strong> {{ equipo.serial }}<br>
+                        <strong>Marca:</strong> {{ equipo.marca }}<br>
+                        <strong>Modelo:</strong> {{ equipo.modelo }}<br>
+                        <strong>Empresa:</strong> {{ equipo.empresa.nombre|default:"No asignada" }} <br>
+                        <strong>Fecha de registro:</strong> {{ equipo.fecha_registro|date:"d/m/Y H:i" }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <h3 class="mb-3 text-center titulo-historial-equipos">Historial del Equipo</h3>
+    {% if historial %}
+        <ul class="timeline">
+            {% for h in historial %}
+            <li class="timeline-item">
+                <div class="timeline-date">
+                    {{ h.fecha|date:"d/m/Y H:i" }}
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">
+                        <b>Usuario:</b> {{ h.usuario_asignado }}<br>
+                        <b>Procesador:</b> {{ h.procesador }}<br>
+                        <b>RAM:</b> {{ h.ram_gb }}<br>
+                        <b>Almacenamiento:</b> {{ h.almacenamiento_gb }}<br>
+                        <b>Sistema operativo:</b> {{ h.sistema_operativo }}<br>
+                        <b>Ubicación:</b> {{ h.ubicacion }}<br>
+                        {% if h.observaciones %}
+                            <p class="mt-2"><em>{{ h.observaciones }}</em></p>
+                        {% endif %}
+                    </div>
+                    {% if h.foto_historial %}
+                        <img src="{{ h.foto_historial.url }}" alt="Foto historial">
+                    {% endif %}
+                </div>
+            </li>
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-info text-center">
+            No hay historial disponible para este equipo.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
