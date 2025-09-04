@@ -1,28 +1,33 @@
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 
-from django.shortcuts import redirect, render
-from django.views import View
+from django.contrib.auth.decorators import login_required
 
-class LoginView(View):
-    template_name = 'User_Templates/login.html'  # Nombre de la plantilla de login
-    def get(self, request):
-        return render(request, self.template_name)
-    # template_name = 'User/login.html'  # Nombre de la plantilla de login
-
-    # def get(self, request):
-    #     if request.user.is_authenticated:
-    #         return redirect('User_app:home')  # Redirige si ya está autenticado
-    #     return render(request, self.template_name)
-
-    def post(self, request):
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('usuario')
+        password = request.POST.get('clave')
         user = authenticate(request, username=username, password=password)
-        print("Te logueaste correctamente")
 
         if user is not None:
             login(request, user)
-            # return redirect('User_app:home')  # Cambia 'dashboard' por la vista después de loguearse
+            return redirect('user:home')  # Cambia esto a la ruta que quieres luego de login
         else:
-            return render(request, self.template_name, {'error': 'Usuario o contraseña incorrectos'})
+            return render(request, 'login.html', {'mensaje': 'Credenciales inválidas'})
+    elif request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('user:home')  # Redirige si ya está autenticado
+        return render(request, 'login.html')
+
+    return render(request, 'login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('user:login')
+
+
+
+@login_required(login_url='user:login')
+def bienvenida_view(request):
+    return render(request, 'bienvenida.html')

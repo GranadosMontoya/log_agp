@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="{% static 'css/bienvenida.css' %}">
+    {% include 'includes/canvas.html' %}
+{% endblock head %}
+
+{% block body %}
+    <div class="bienvenida-container">
+        <h1>¡Bienvenido, {{ request.user.username }}!</h1>
+        <p>Has iniciado sesión correctamente.</p>
+    </div>
+{% endblock body %}

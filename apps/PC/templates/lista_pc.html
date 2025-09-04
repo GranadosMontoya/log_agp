@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load static %}
+
+{% block head %}
+<title>Lista de equipos</title>
+<link rel="stylesheet" href="{% static 'css/lista_equipos.css' %}">
+{% include 'includes/canvas.html' %}
+{% endblock head %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center titulo-lista-equipos">
+        Listado de Equipos
+    </h2>
+    <div class="row g-4">
+        {% for equipo in equipos %}
+            <div class="col-md-4">
+                <!-- le agregamos tarjetas además de card -->
+                <div class="card tarjetas shadow-sm h-100">
+                    
+                    {% if equipo.foto_del_pc %}
+                        <img src="{{ equipo.foto_del_pc.url }}" class="card-img-top img-standar" alt="{{ equipo.nombre }}">
+                    {% else %}
+                        <img src="{% static 'img/default_pc.jpg' %}" class="card-img-top img-standar" alt="Sin imagen">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title titulo-blanco">{{ equipo.nombre }}</h5>
+                        <h6 class="card-subtitle mb-2 titulo-blanco">{{ equipo.get_tipo_display }}</h6>
+                        <p class="card-text">
+                            <strong>Serial:</strong> {{ equipo.serial }}<br>
+                            <strong>Marca:</strong> {{ equipo.marca }}<br>
+                            <strong>Modelo:</strong> {{ equipo.modelo }}<br>
+                            <strong>Empresa:</strong> {{ equipo.empresa.nombre|default:"No asignada" }}
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <a href="{% url 'pc:detalle_pc' equipo.serial %}" class="btn btn-primary">Vea historial</a>
+                    </div>
+
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-warning text-center">
+                    No hay equipos registrados aún.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

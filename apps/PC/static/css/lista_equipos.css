@@ -1,0 +1,54 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url("/static/img/totoro.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pc-container {
+    max-width: 400px;         
+    margin: 30px auto;        
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    text-align: center;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+}
+
+
+.pc-container h1, p{
+    color: #ffff;
+}
+
+.img-standar {
+    width: 100%;
+    max-width: 250px;
+    height: 180px;
+    object-fit: cover;
+    margin: 16px auto 0 auto; /* margen superior de 16px */
+    display: block;
+}
+
+.titulo-lista-equipos {
+    font-size: 2.5rem;
+    color: #ffff;
+    font-weight: bold;
+}
+
+.tarjetas {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.tarjetas:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.titulo-blanco {
+    color: #fff !important;
+}

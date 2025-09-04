@@ -1,0 +1,54 @@
+{% load static %}
+
+    {% block head %}
+    <style>
+        .ccanvas {
+            background-color: transparent; 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'canvas.css' %}">
+    {% endblock head %}
+
+<!-- Encabezado con botón e icono de usuario alineados -->
+<div class="d-flex justify-content-between align-items-center px-3 py-2 ccanvas">
+    <!-- Botón menú (izquierda) -->
+    <button class="btn btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasExample">
+        <i class="bi bi-text-indent-left fs-4"></i>
+    </button>
+
+    <!-- Menú de usuario (derecha) -->
+    <div>
+        <a href="{% url 'user:logout' %}" class="btn btn-outline-danger">Cerrar sesión</a>
+    </div>
+</div>
+
+
+<!-- Offcanvas lateral -->
+<div class="offcanvas offcanvas-start ccanvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="background-color: transparent; backdrop-filter: blur(10px);">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel" style="color: white !important; font-size: 2.2rem;">
+            <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+        </h5>
+        <button type="button" class="btn-close" style="filter: brightness(0) invert(1);" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+
+    </div>
+    
+    <div class="offcanvas-body">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li>
+                <a href="{% url 'user:home' %}" class="custom-nav-link">
+                    <i class="bi bi-house"></i> Página principal
+                </a>
+                <a href="{% url 'pc:pc_list' %}" class="custom-nav-link">
+                    <i class="bi bi-laptop"></i> Equipos de computo
+                </a>
+                <a href="{% url 'user:home' %}" class="custom-nav-link">
+                    <i class="bi bi-buildings"></i> Empresas
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
