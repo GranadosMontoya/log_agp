@@ -52,3 +52,93 @@ body {
 .titulo-blanco {
     color: #fff !important;
 }
+
+/* ===== Estilo general del modal ===== */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+/* ===== Estilo de los inputs ===== */
+.modal-body label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.modal-body input,
+.modal-body select,
+.modal-body textarea {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+}
+
+.modal-body input:focus,
+.modal-body select:focus,
+.modal-body textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* ===== Botones del modal ===== */
+.modal-footer .btn {
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-weight: bold;
+}
+
+.modal-footer .btn-secondary {
+    background: #6c757d;
+    border: none;
+}
+
+.modal-footer .btn-primary {
+    background: #007bff;
+    border: none;
+}
+
+.modal-footer .btn-primary:hover {
+    background: #0056b3;
+}
+
+/* ===== Diseño de formulario en 2 columnas ===== */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1 1 45%; /* dos columnas */
+    min-width: 200px;
+}
+
+.card-body {
+    text-align: center !important; /* fuerza el centrado */
+}
+
+.card-body .card-title,
+.card-body .card-subtitle,
+.card-body .card-text {
+    display: block;
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+}

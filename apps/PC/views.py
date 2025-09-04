@@ -1,19 +1,25 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import ListView,View, DeleteView
+from django.views.generic import ListView,View, CreateView
 from apps.PC.models import Equipo,HistorialEquipo  # Ajusta si tu modelo está en otra app
-from .forms import HistorialEquipoForm
+from .forms import HistorialEquipoForm, EquipoForm
+
 
 class PCView(LoginRequiredMixin, ListView):
-    paginate_by = 20  # Número de equipos por página
+    paginate_by = 20  
     model = Equipo
     template_name = 'lista_pc.html'
-    context_object_name = 'equipos'  # Nombre con el que accedes a los objetos en la plantilla
+    context_object_name = 'equipos'  
     login_url = 'user:login'
 
     def get_queryset(self):
-        return Equipo.objects.all().order_by('-fecha_registro')  # Por ejemplo, del más reciente al más antiguo
+        return Equipo.objects.all().order_by('-fecha_registro')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = EquipoForm()  # 👈 aquí pasamos el formulario al template
+        return context
 
 class DetallePCView(LoginRequiredMixin, View):
     login_url = 'user:login'
@@ -60,3 +66,9 @@ class EliminarEquipoView(LoginRequiredMixin, View):
         equipo = Equipo.objects.get(serial=serial)
         equipo.delete()
         return redirect(reverse_lazy('pc:pc_list'))  # 🔹 Ajusta al nombre de tu vista/lista
+    
+class AgregarEquipoView(CreateView):
+    model = Equipo
+    form_class = EquipoForm
+    template_name = "lista_pc.html"  # aunque el modal lo cargamos dentro de la lista
+    success_url = reverse_lazy("pc:pc_list")  # redirige a la lista después de guardar

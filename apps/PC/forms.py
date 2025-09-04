@@ -1,5 +1,5 @@
 from django import forms
-from .models import HistorialEquipo
+from .models import HistorialEquipo, Equipo
 
 class HistorialEquipoForm(forms.ModelForm):
     class Meta:
@@ -17,3 +17,8 @@ class HistorialEquipoForm(forms.ModelForm):
             'observaciones': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'foto_historial': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
+
+class EquipoForm(forms.ModelForm):
+    class Meta:
+        model = Equipo
+        fields = ['nombre', 'serial', 'tipo', 'marca', 'modelo', 'empresa', 'foto_del_pc']
