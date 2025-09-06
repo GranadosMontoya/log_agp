@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView,View, CreateView
 from apps.PC.models import Equipo,HistorialEquipo  # Ajusta si tu modelo está en otra app
 from .forms import HistorialEquipoForm, EquipoForm
+from django.db.models import Q
 
 
 class PCView(LoginRequiredMixin, ListView):
@@ -14,11 +15,21 @@ class PCView(LoginRequiredMixin, ListView):
     login_url = 'user:login'
 
     def get_queryset(self):
-        return Equipo.objects.all().order_by('-fecha_registro')
+        queryset = Equipo.objects.all().order_by('-fecha_registro')
+        query = self.request.GET.get("q")  # 👈 capturamos el texto de búsqueda
+        if query:
+            queryset = queryset.filter(
+                Q(nombre__icontains=query) |
+                Q(serial__icontains=query) |
+                Q(marca__icontains=query) |
+                Q(modelo__icontains=query)
+            )
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form"] = EquipoForm()  # 👈 aquí pasamos el formulario al template
+        context["form"] = EquipoForm()
+        context["query"] = self.request.GET.get("q", "")  # 👈 para mantener el valor en el input
         return context
 
 class DetallePCView(LoginRequiredMixin, View):
