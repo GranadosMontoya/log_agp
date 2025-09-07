@@ -12,7 +12,7 @@ class HistorialEquipoForm(forms.ModelForm):
             'almacenamiento_gb': forms.TextInput(attrs={'class': 'form-control'}),
             'sistema_operativo': forms.TextInput(attrs={'class': 'form-control'}),
             'usuario_asignado': forms.TextInput(attrs={'class': 'form-control'}),
-            'contraseña_asignado': forms.TextInput(attrs={'class': 'form-control', 'type': 'password'}),
+            'contraseña_asignado': forms.TextInput(attrs={'class': 'form-control'}),
             'ubicacion': forms.TextInput(attrs={'class': 'form-control'}),
             'observaciones': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'foto_historial': forms.ClearableFileInput(attrs={'class': 'form-control'}),

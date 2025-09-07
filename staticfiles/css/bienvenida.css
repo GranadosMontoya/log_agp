@@ -1,0 +1,22 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url("/static/img/fondo_home.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bienvenida-container {
+    max-width: 400px;         
+    margin: 30px auto;        
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    text-align: center;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+}
+
+
+.bienvenida-container h1, p{
+    color: #ffff;
+}

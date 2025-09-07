@@ -62,11 +62,13 @@
                 <div class="timeline-content">
                     <div class="timeline-text">
                         <b>Usuario:</b> {{ h.usuario_asignado }}<br>
+                        <b>Contraseña:</b> {{ h.contraseña_asignado }}<br>
                         <b>Procesador:</b> {{ h.procesador }}<br>
                         <b>RAM:</b> {{ h.ram_gb }}<br>
                         <b>Almacenamiento:</b> {{ h.almacenamiento_gb }}<br>
                         <b>Sistema operativo:</b> {{ h.sistema_operativo }}<br>
                         <b>Ubicación:</b> {{ h.ubicacion }}<br>
+
                         {% if h.observaciones %}
                             <p class="mt-2"><em>{{ h.observaciones }}</em></p>
                         {% endif %}

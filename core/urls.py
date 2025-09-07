@@ -24,6 +24,7 @@ urlpatterns = [
     
     path('', include('apps.User.urls')),       # Se mantiene en raíz
     path('', include('apps.PC.urls')),      # Añade prefijo para esta app
+    path('', include('apps.Empresas.urls')),  # Añade prefijo para esta app
 ]
 
 if settings.DEBUG:
